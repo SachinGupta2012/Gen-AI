@@ -78,6 +78,6 @@ python main.py
 
 ## 🤝 Credits
 
-Built with ❤️ using Python and Groq AI.
+Built with using Python and Groq AI.
 
 ---
