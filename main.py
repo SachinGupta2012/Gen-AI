@@ -119,10 +119,39 @@ class TemplatePopulator:
                 }
             }
         }
+    
 
     def populate_data(self):
         self.load_data()
         mappings = self.get_ai_mappings()
+
+        for facility, col_index in mappings["facility_columns"].items():
+            roles = list(mappings["role_mappings"].values())
+            outbreaks = list(mappings["outbreak_mappings"].values())
+
+            bed_days_sum = self.bed_days[self.bed_days["Facility"] == facility]["OccupiedBedDays"].sum()
+            emp_cost = self.employee_costs[
+                (self.employee_costs["Facility"] == facility) &
+                (self.employee_costs["Role"].isin(roles))
+            ]["Cost_AUD"].sum()
+
+            agency_cost = self.agency_costs[
+                (self.agency_costs["Facility"] == facility) &
+                (self.agency_costs["Role"].isin(roles))
+            ]["Cost_AUD"].sum()
+
+            outbreak_cost = self.outbreak_costs[
+                (self.outbreak_costs["Facility"] == facility) &
+                (self.outbreak_costs["CostCategory"].isin(outbreaks))
+            ]["Cost_AUD"].sum()
+
+            total_cost = emp_cost + agency_cost + outbreak_cost
+
+            self.template_df.iat[2, col_index] = bed_days_sum
+            self.template_df.iat[3, col_index] = f"${emp_cost:,.2f}"
+            self.template_df.iat[4, col_index] = f"${agency_cost:,.2f}"
+            self.template_df.iat[5, col_index] = f"${outbreak_cost:,.2f}"
+            self.template_df.iat[6, col_index] = f"${total_cost:,.2f}"
 
         print("Populating data using the mappings...")
         print("Populating employee costs...")
