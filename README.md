@@ -18,7 +18,9 @@ A Python-based automation tool to intelligently populate structured Excel/CSV te
 
 ```
 GenAI-Template-Filler/
-├── main.py                      # Main script
+├── main.py
+├── .venv
+├── requirements.txt                      # Main script
 ├── template/
 │   └── template.csv            # Input template file
 ├── source/
@@ -29,7 +31,6 @@ GenAI-Template-Filler/
 │   ├── labour_hours.csv
 │   └── outbreak_management_costs.csv
 ├── output/
-│   ├── populated_template.csv  # Output file (CSV)
 │   └── populated_template.xlsx # Output file (Excel)
 ```
 
