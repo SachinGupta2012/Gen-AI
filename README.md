@@ -81,7 +81,3 @@ python main.py
 Built with ❤️ using Python and Groq AI.
 
 ---
-
-## 📃 License
-
-MIT License (for academic/demo use)
