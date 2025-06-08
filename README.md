@@ -4,35 +4,28 @@ A Python-based automation tool to intelligently populate structured Excel/CSV te
 
 ---
 
-## 🔧 Features
+## 📌 Assignment Overview
 
-* Reads multiple CSV data sources (employee costs, labour hours, bed days, etc.)
-* Uses Groq AI (e.g., LLaMA3 model) to suggest mappings between source and template
-* Populates the template with placeholder values (like `$0.00`, `0.00`, `-`)
-* Automatically corrects encoding and formatting issues (like `â—¦`, `-  `)
-* Supports both CSV and Excel (`.xlsx`) export formats
+The system:
+- Reads a complex CSV template with structured financial categories.
+- Extracts matching financial values from multiple source CSVs.
+- Uses the **Groq AI model** to map and populate correct values into the template.
+- Outputs the result into a new CSV file, preserving structure, indentation, comments, and formatting.
 
 ---
-
 ## 📁 Folder Structure
 
 ```
 GenAI-Template-Filler/
-├── main.py
-├── .venv
-├── requirements.txt                      # Main script
-├── template/
-│   └── template.csv            # Input template file
-├── source/
-│   ├── agency_staff_costs.csv
-│   ├── bed_days.csv
-│   ├── employee_labour_costs.csv
-│   ├── hourly_rates.csv
-│   ├── labour_hours.csv
-│   └── outbreak_management_costs.csv
-├── output/
-│   └── populated_template.xlsx # Output file (Excel)
-```
+│
+├── main.py # Main script to extract & populate data
+├── template.csv # Target CSV structure to be populated
+├── source_csvs/ # Folder with raw input CSVs
+│ ├── source1.csv
+│ ├── source2.csv
+│ └── ...
+├── output.csv # Final structured & populated output
+└── README.md
 
 ---
 
@@ -67,17 +60,6 @@ python main.py
 * Special character cleanup and UTF-8 normalization are included.
 
 ---
-
-## 📌 Sample Output
-
-| Field                              | ACH Valley View | ACH Riverbank | ACH Meadowfield |
-| ---------------------------------- | --------------- | ------------- | --------------- |
-| ◦ Registered nurses                | \$0.00          | \$0.00        | \$0.00          |
-| ◦ Infection Prevention and Control | -               | -             | -               |
-
----
-
-## 🤝 Credits
 
 Built with using Python and Groq AI.
 
